@@ -1,0 +1,49 @@
+    //acount page employee page
+    @FXML private TableView<employeeInfo> newEployeeAccountTableViewtableview;
+    
+    @FXML private TableColumn<employeeInfo, Integer> colIdemployee;
+    @FXML private TableColumn<employeeInfo, String> colLastNameemployee;
+    @FXML private TableColumn<employeeInfo, String> colContactNoemployee;
+    @FXML private TableColumn<employeeInfo, String> colEmailemployee;
+    @FXML private TableColumn<employeeInfo, String> colDateemployee;;
+    
+    private ObservableList<employeeInfo> newEmployeeAccountObservableList = FXCollections.observableArrayList();
+
+    public void loadDataEmployee() {
+        // Check if columns are initialized
+        if (colIdemployee == null || colLastNameemployee == null || colContactNoemployee == null ||
+                colEmailemployee == null || colDateemployee == null) {
+            System.out.println("Employee table columns not initialized yet");
+            return;
+        }
+
+        Connection con = ConnectionDB.getConnection();
+
+        String query = "select * from employee_account_table";
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                newEmployeeAccountObservableList.add(new employeeInfo(
+                        rs.getInt("idemployee_account_table"),
+                        rs.getString("employee_last_name"),
+                        rs.getString("employee_contact_no"),
+                        rs.getString("employee_email"),
+                        rs.getString("employee_account_date_created")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //add to the table na
+        colIdemployee.setCellValueFactory(new PropertyValueFactory<>("id_newemployee"));
+        colLastNameemployee.setCellValueFactory(new PropertyValueFactory<>("newnameemployee"));
+        colContactNoemployee.setCellValueFactory(new PropertyValueFactory<>("newcontactemployee"));
+        colEmailemployee.setCellValueFactory(new PropertyValueFactory<>("newemailemployee"));
+        colDateemployee.setCellValueFactory(new PropertyValueFactory<>("newdateemployee"));
+
+        newEployeeAccountTableViewtableview.setItems(newEmployeeAccountObservableList);
+    }
+
