@@ -1,0 +1,60 @@
+package com.example.icetubelogistics;
+
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
+public class employeeInfo {
+    private final SimpleIntegerProperty id_newemployee;
+    private final SimpleStringProperty newnameemployee;
+    private final SimpleStringProperty newcontactemployee;
+    private final SimpleStringProperty newemailemployee;
+    private final SimpleStringProperty newdateemployee;
+
+    public employeeInfo(int id_newemployee, String newnameemployee, String newcontactemployee, String newemailemployee, String newdateemployee) {
+        this.id_newemployee = new SimpleIntegerProperty(id_newemployee);
+        this.newnameemployee = new SimpleStringProperty(newnameemployee);
+        this.newcontactemployee = new SimpleStringProperty(newcontactemployee);
+        this.newemailemployee = new SimpleStringProperty(newemailemployee);
+        this.newdateemployee = new SimpleStringProperty(newdateemployee);
+    }
+
+    public int getId_newemployee() {
+        return id_newemployee.get();
+    }
+
+    public SimpleIntegerProperty id_newemployeeProperty() {
+        return id_newemployee;
+    }
+
+    public String getNewnameemployee() {
+        return newnameemployee.get();
+    }
+
+    public SimpleStringProperty newnameemployeeProperty() {
+        return newnameemployee;
+    }
+
+    public String getNewcontactemployee() {
+        return newcontactemployee.get();
+    }
+
+    public SimpleStringProperty newcontactemployeeProperty() {
+        return newcontactemployee;
+    }
+
+    public String getNewemailemployee() {
+        return newemailemployee.get();
+    }
+
+    public SimpleStringProperty newemailemployeeProperty() {
+        return newemailemployee;
+    }
+
+    public String getNewdateemployee() {
+        return newdateemployee.get();
+    }
+
+    public SimpleStringProperty newdateemployeeProperty() {
+        return newdateemployee;
+    }
+}
